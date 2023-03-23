@@ -29,19 +29,23 @@ namespace FauxmoCS
 
             while (true)
             {
-                if (ct.IsCancellationRequested)
-                {
-                    GravaLog.Gravar("Parando UDP listener...", nomeArquivoLog);
-                    ct.ThrowIfCancellationRequested();
-                }
-
                 UdpClient listener = new();
-                listener.Client.Bind(localEndPoint);
-                listener.JoinMulticastGroup(IPAddress.Parse("239.255.255.250"), IPAddress.Parse(localIp));
-                listener.Client.ReceiveTimeout = 200;
 
                 try
                 {
+                    if (ct.IsCancellationRequested)
+                    {
+                        GravaLog.Gravar("Parando UDP listener...", nomeArquivoLog);
+                        ct.ThrowIfCancellationRequested();
+                    }
+
+                          
+                    listener.Client.Bind(localEndPoint);
+                    listener.JoinMulticastGroup(IPAddress.Parse("239.255.255.250"), IPAddress.Parse(localIp));
+                    listener.Client.ReceiveTimeout = 200;
+
+                
+                    
                     //var bytes = listener.Receive(ref groupEP);
                     //string recebido = Encoding.ASCII.GetString(bytes, 0, bytes.Length);
                     string recebido = Encoding.ASCII.GetString(listener.Receive(ref groupEP));
@@ -59,6 +63,7 @@ namespace FauxmoCS
                     }
                 }
                 catch (SocketException) { }
+                catch (OperationCanceledException) { return; }
                 catch (Exception ex)
                 {
                     GravaLog.Gravar(ex.ToString(), nomeArquivoLog);

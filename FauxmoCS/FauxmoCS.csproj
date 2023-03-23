@@ -8,6 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>AlexaCS.ico</ApplicationIcon>
     <Platforms>AnyCPU;x86</Platforms>
+    <Title>AlexaCS</Title>
   </PropertyGroup>
 
   <ItemGroup>

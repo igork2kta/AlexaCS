@@ -12,7 +12,6 @@ namespace FauxmoCS
 {
     public partial class MainForm : Form
     {
-        //List<Device> devices = new();
         Device[] devices;
         bool tcpRunning, udpRunning;
 
@@ -110,18 +109,23 @@ namespace FauxmoCS
         }
 
         private void fecharToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+            =>this.Close();
+        
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
             this.ShowInTaskbar = true;
+            //Mostra no gerenciador de tarefas novamente
+            FormBorderStyle = FormBorderStyle.Sizable;
         }
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
             if (FormWindowState.Minimized == this.WindowState)
+            {
                 this.ShowInTaskbar = false;
+                //Esconde do gerenciador de tarefas quando a aplicação é minimizada
+                FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            }
         }
 
         private void cb_iniciarComWindows_CheckedChanged(object sender, EventArgs e)
@@ -132,12 +136,12 @@ namespace FauxmoCS
             if (cbox_IniciarComWindows.Checked == true)
             {
                 Reg = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
-                if(Reg != null) Reg.SetValue("IrReceiver", Application.ExecutablePath.ToString());
+                Reg?.SetValue("IrReceiver", Application.ExecutablePath.ToString());
             }
             else
             {
                 Reg = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
-                if (Reg != null) Reg.DeleteValue("IrReceiver");
+                Reg?.DeleteValue("IrReceiver");
             }
         }
 
@@ -219,9 +223,8 @@ namespace FauxmoCS
         }
         */
         private void bt_salvar_Click(object sender, EventArgs e)
-        {
-            SalvarComandos();
-        }
+            => SalvarComandos();
+        
         public void SalvarComandos()
         {
             List<DeviceCreator> creator = new();
@@ -231,36 +234,24 @@ namespace FauxmoCS
             for (byte i = 0; i < dgv_devices.RowCount; i++)
             {
                 if (dgv_devices.Rows[i].Index == (dgv_devices.Rows.Count - 1)) continue;
+                
                 deviceName = Convert.ToString(dgv_devices.Rows[i].Cells[0].Value);
                 deviceType = Convert.ToString(dgv_devices.Rows[i].Cells[1].Value);
+                command    = Convert.ToString(dgv_devices.Rows[i].Cells[2].Value);
+                argument   = Convert.ToString(dgv_devices.Rows[i].Cells[3].Value);
+                key        = Convert.ToString(dgv_devices.Rows[i].Cells[4].Value);
+                key2       = Convert.ToString(dgv_devices.Rows[i].Cells[5].Value);
+                key3       = Convert.ToString(dgv_devices.Rows[i].Cells[6].Value);
+
                 if (String.IsNullOrEmpty(deviceType))
                 {
                     MessageBox.Show("O tipo de dispositivo precisa ser selecionado!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                command = Convert.ToString(dgv_devices.Rows[i].Cells[2].Value);
-                argument = Convert.ToString(dgv_devices.Rows[i].Cells[3].Value);
-                key = Convert.ToString(dgv_devices.Rows[i].Cells[4].Value);
-                key2 = Convert.ToString(dgv_devices.Rows[i].Cells[5].Value);
-                key3 = Convert.ToString(dgv_devices.Rows[i].Cells[6].Value);
-
                 if (deviceName == null || deviceType == null) continue;
                 creator.Add(new(deviceName, deviceType, command, argument, key, key2, key3));
 
-                
-
-                /*
-                if (deviceType == "COMANDO" && command != null && argument != null)
-                    devices[i] = (new CommandDevice(deviceName, i, new ProcessStartInfo(command, argument)));
-
-                else if (deviceType == "TECLA" && key != null)
-                    devices[i] = (new KeyDevice(deviceName, i, DeviceCreator.GetEnumValue<VirtualKeyCode>(key),
-                                    DeviceCreator.GetEnumValue<VirtualKeyCode>(key2), DeviceCreator.GetEnumValue<VirtualKeyCode>(key3)));
-
-                else if (deviceType == "VOLUME" && key != null)
-                    devices[i] = (new VolumeDevice(deviceName, i));
-                */
             }
 
             var json_serializado = JsonConvert.SerializeObject(creator);
@@ -296,7 +287,7 @@ namespace FauxmoCS
             {
                 tokenTcp.Cancel();
                 TcpRunning = false;
-                if(listener != null) listener.Stop();
+                listener?.Stop();
             }
         }
 
@@ -317,21 +308,25 @@ namespace FauxmoCS
         }
 
         private void Bt_abrirLogs_Click(object sender, EventArgs e)
+            => Process.Start("explorer.exe", AppDomain.CurrentDomain.BaseDirectory + "Logs");
+        
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            string argument = @"/select, " + ".\\Logs\\";
-            Process.Start("explorer.exe", argument);
+            About about = new ();
+            about.ShowDialog();
         }
 
         private static string GetLocalIp()
         {
-            string localIP;
+            //string localIP;
             using Socket socket = new(AddressFamily.InterNetwork, SocketType.Dgram, 0);
             socket.Connect("8.8.8.8", 65530);
-            if (socket.LocalEndPoint is IPEndPoint endPoint) localIP = endPoint.Address.ToString();
+            if (socket.LocalEndPoint is IPEndPoint endPoint) return endPoint.Address.ToString();
 
             else throw new Exception("Falha ao obter endereço de IP local");
 
-            return localIP;
+            //return localIP;
         }
         
     }

@@ -52,6 +52,7 @@
             this.lbl_tcpState = new System.Windows.Forms.Label();
             this.lbl_udpState = new System.Windows.Forms.Label();
             this.bt_abrirLogs = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_devices)).BeginInit();
             this.SuspendLayout();
@@ -93,7 +94,7 @@
             this.cbox_IniciarComWindows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbox_IniciarComWindows.AutoSize = true;
             this.cbox_IniciarComWindows.ForeColor = System.Drawing.Color.White;
-            this.cbox_IniciarComWindows.Location = new System.Drawing.Point(12, 243);
+            this.cbox_IniciarComWindows.Location = new System.Drawing.Point(12, 234);
             this.cbox_IniciarComWindows.Name = "cbox_IniciarComWindows";
             this.cbox_IniciarComWindows.Size = new System.Drawing.Size(147, 19);
             this.cbox_IniciarComWindows.TabIndex = 1;
@@ -123,7 +124,7 @@
             this.dgv_devices.Name = "dgv_devices";
             this.dgv_devices.RowHeadersWidth = 20;
             this.dgv_devices.RowTemplate.Height = 25;
-            this.dgv_devices.Size = new System.Drawing.Size(723, 175);
+            this.dgv_devices.Size = new System.Drawing.Size(709, 166);
             this.dgv_devices.TabIndex = 2;
             this.dgv_devices.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgv_devices_DataError);
             // 
@@ -179,7 +180,7 @@
             // bt_salvar
             // 
             this.bt_salvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_salvar.Location = new System.Drawing.Point(660, 193);
+            this.bt_salvar.Location = new System.Drawing.Point(646, 184);
             this.bt_salvar.Name = "bt_salvar";
             this.bt_salvar.Size = new System.Drawing.Size(75, 23);
             this.bt_salvar.TabIndex = 3;
@@ -192,7 +193,7 @@
             this.bt_descartar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_descartar.BackColor = System.Drawing.SystemColors.ControlLight;
             this.bt_descartar.ForeColor = System.Drawing.Color.Black;
-            this.bt_descartar.Location = new System.Drawing.Point(579, 193);
+            this.bt_descartar.Location = new System.Drawing.Point(565, 184);
             this.bt_descartar.Name = "bt_descartar";
             this.bt_descartar.Size = new System.Drawing.Size(75, 23);
             this.bt_descartar.TabIndex = 4;
@@ -205,7 +206,7 @@
             this.cbox_IniciarMinimizado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbox_IniciarMinimizado.AutoSize = true;
             this.cbox_IniciarMinimizado.ForeColor = System.Drawing.Color.White;
-            this.cbox_IniciarMinimizado.Location = new System.Drawing.Point(12, 218);
+            this.cbox_IniciarMinimizado.Location = new System.Drawing.Point(12, 209);
             this.cbox_IniciarMinimizado.Name = "cbox_IniciarMinimizado";
             this.cbox_IniciarMinimizado.Size = new System.Drawing.Size(124, 19);
             this.cbox_IniciarMinimizado.TabIndex = 5;
@@ -218,7 +219,7 @@
             this.cbox_saveLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbox_saveLogs.AutoSize = true;
             this.cbox_saveLogs.ForeColor = System.Drawing.Color.White;
-            this.cbox_saveLogs.Location = new System.Drawing.Point(12, 193);
+            this.cbox_saveLogs.Location = new System.Drawing.Point(12, 184);
             this.cbox_saveLogs.Name = "cbox_saveLogs";
             this.cbox_saveLogs.Size = new System.Drawing.Size(88, 19);
             this.cbox_saveLogs.TabIndex = 8;
@@ -232,7 +233,7 @@
             this.bt_iniciar.BackColor = System.Drawing.Color.Red;
             this.bt_iniciar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.bt_iniciar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bt_iniciar.Location = new System.Drawing.Point(481, 193);
+            this.bt_iniciar.Location = new System.Drawing.Point(467, 184);
             this.bt_iniciar.Name = "bt_iniciar";
             this.bt_iniciar.Size = new System.Drawing.Size(79, 23);
             this.bt_iniciar.TabIndex = 11;
@@ -244,7 +245,7 @@
             // 
             this.bt_pareamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_pareamento.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bt_pareamento.Location = new System.Drawing.Point(395, 193);
+            this.bt_pareamento.Location = new System.Drawing.Point(381, 184);
             this.bt_pareamento.Name = "bt_pareamento";
             this.bt_pareamento.Size = new System.Drawing.Size(79, 23);
             this.bt_pareamento.TabIndex = 12;
@@ -255,7 +256,7 @@
             // lbl_tcpState
             // 
             this.lbl_tcpState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbl_tcpState.Location = new System.Drawing.Point(537, 232);
+            this.lbl_tcpState.Location = new System.Drawing.Point(523, 238);
             this.lbl_tcpState.Name = "lbl_tcpState";
             this.lbl_tcpState.Size = new System.Drawing.Size(198, 15);
             this.lbl_tcpState.TabIndex = 13;
@@ -266,7 +267,7 @@
             // 
             this.lbl_udpState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_udpState.ForeColor = System.Drawing.Color.Lime;
-            this.lbl_udpState.Location = new System.Drawing.Point(493, 248);
+            this.lbl_udpState.Location = new System.Drawing.Point(479, 254);
             this.lbl_udpState.Name = "lbl_udpState";
             this.lbl_udpState.Size = new System.Drawing.Size(242, 15);
             this.lbl_udpState.TabIndex = 14;
@@ -279,19 +280,33 @@
             this.bt_abrirLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_abrirLogs.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.bt_abrirLogs.Image = global::FauxmoCS.Properties.Resources.Search;
-            this.bt_abrirLogs.Location = new System.Drawing.Point(101, 193);
+            this.bt_abrirLogs.Location = new System.Drawing.Point(101, 184);
             this.bt_abrirLogs.Name = "bt_abrirLogs";
             this.bt_abrirLogs.Size = new System.Drawing.Size(19, 19);
             this.bt_abrirLogs.TabIndex = 15;
             this.bt_abrirLogs.UseVisualStyleBackColor = true;
             this.bt_abrirLogs.Click += new System.EventHandler(this.Bt_abrirLogs_Click);
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(3, 255);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(18, 19);
+            this.button1.TabIndex = 16;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.ClientSize = new System.Drawing.Size(747, 270);
+            this.ClientSize = new System.Drawing.Size(733, 276);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.bt_abrirLogs);
             this.Controls.Add(this.lbl_udpState);
             this.Controls.Add(this.lbl_tcpState);
@@ -339,5 +354,6 @@
         private DataGridViewComboBoxColumn TECLA2;
         private DataGridViewComboBoxColumn TECLA3;
         private Button bt_abrirLogs;
+        private Button button1;
     }
 }

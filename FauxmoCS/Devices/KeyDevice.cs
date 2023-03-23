@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualBasic.Devices;
-using System.Diagnostics;
-using WindowsInput;
+﻿using WindowsInput;
 using WindowsInput.Native;
 
 namespace FauxmoCS
@@ -29,13 +27,17 @@ namespace FauxmoCS
 
         public void ExecuteState()
         {
-            ; keyboard.Keyboard.KeyDown(key);
-            if (key2 != null) keyboard.Keyboard.KeyDown(key2);
-            if (key3 != null) keyboard.Keyboard.KeyDown(key3);
+            keyboard.Keyboard.KeyDown(key);
+            //if (key2 != null) 
+                keyboard?.Keyboard.KeyDown(key2);
+            //if (key3 != null) 
+                keyboard?.Keyboard.KeyDown(key3);
 
-            if (key3 != null) keyboard.Keyboard.KeyUp(key3);
-            if (key2 != null) keyboard.Keyboard.KeyUp(key2);
-            keyboard.Keyboard.KeyUp(key);
+            //if (key3 != null) 
+                keyboard?.Keyboard.KeyUp(key3);
+            //if (key2 != null)
+                keyboard?.Keyboard.KeyUp(key2);
+            keyboard?.Keyboard.KeyUp(key);
             
         }
 
