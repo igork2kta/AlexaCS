@@ -2,10 +2,8 @@ using Microsoft.Win32;
 using Newtonsoft.Json;
 using System.Data;
 using System.Diagnostics;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Reflection;
 using WindowsInput.Native;
 
 namespace FauxmoCS
@@ -69,9 +67,6 @@ namespace FauxmoCS
             cbox_IniciarComWindows.Checked = Properties.Settings.Default.cbAutoStart;
             cbox_saveLogs.Checked = Properties.Settings.Default.cbAutoStart;
             cbox_IniciarMinimizado.Checked = Properties.Settings.Default.cbStartMinimized;
-            //bt_iniciar.Text = "Parar";
-            //bt_iniciar.ForeColor = Color.White;
-            //bt_iniciar.BackColor = Color.Red;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -86,7 +81,7 @@ namespace FauxmoCS
             TECLA2.DataSource = TECLA.DataSource;
             TECLA3.DataSource = TECLA.DataSource;
 
-            if (Properties.Settings.Default.cbStartMinimized) this.WindowState = FormWindowState.Minimized;
+            if (Properties.Settings.Default.cbStartMinimized) WindowState = FormWindowState.Minimized;
 
             if (CarregarComandos())
             {
@@ -102,38 +97,37 @@ namespace FauxmoCS
             UdpRunning = false;
         }
 
-        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Normal;
-            this.ShowInTaskbar = true;
+            WindowState = FormWindowState.Normal;
+            ShowInTaskbar = true;
         }
 
-        private void fecharToolStripMenuItem_Click(object sender, EventArgs e)
-            =>this.Close();
+        private void FecharToolStripMenuItem_Click(object sender, EventArgs e) => Close();
         
-        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.WindowState = FormWindowState.Normal;
-            this.ShowInTaskbar = true;
+            WindowState = FormWindowState.Normal;
+            ShowInTaskbar = true;
             //Mostra no gerenciador de tarefas novamente
             FormBorderStyle = FormBorderStyle.Sizable;
         }
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
-            if (FormWindowState.Minimized == this.WindowState)
+            if (FormWindowState.Minimized == WindowState)
             {
-                this.ShowInTaskbar = false;
+                ShowInTaskbar = false;
                 //Esconde do gerenciador de tarefas quando a aplicação é minimizada
                 FormBorderStyle = FormBorderStyle.FixedToolWindow;
             }
         }
 
-        private void cb_iniciarComWindows_CheckedChanged(object sender, EventArgs e)
+        private void Bb_iniciarComWindows_CheckedChanged(object sender, EventArgs e)
         {
             RegistryKey? Reg;
             Properties.Settings.Default.cbAutoStart = cbox_IniciarComWindows.Checked;
             Properties.Settings.Default.Save();
-            if (cbox_IniciarComWindows.Checked == true)
+            if (cbox_IniciarComWindows.Checked)
             {
                 Reg = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
                 Reg?.SetValue("IrReceiver", Application.ExecutablePath.ToString());
@@ -145,13 +139,13 @@ namespace FauxmoCS
             }
         }
 
-        private void cbox_iniciarMinimizado_CheckedChanged(object sender, EventArgs e)
+        private void Cbox_iniciarMinimizado_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.cbStartMinimized = cbox_IniciarMinimizado.Checked;
             Properties.Settings.Default.Save();
         }
 
-        private void cbox_saveLogs_CheckedChanged(object sender, EventArgs e)
+        private void Cbox_saveLogs_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.cbAutoStart = cbox_saveLogs.Checked;
             Properties.Settings.Default.Save();
@@ -182,48 +176,9 @@ namespace FauxmoCS
                 dgv_devices.Rows.Add(device.nome, device.tipo, device.comando, device.argumento, device.tecla, device.tecla2, device.tecla3);
 
             return true;
-            //devices.Add(new VolumeDevice("PC", (byte)(devices.Count+1)));
-
         }
 
-        /*
-        public void SalvarComandos()
-        {
-            List<DeviceCreator> creator = new();
-
-            string? deviceName, deviceType, command, argument, key, key2, key3;
-
-            foreach (DataGridViewRow row in dgv_devices.Rows)
-            {
-                if (row.Index == (dgv_devices.Rows.Count -1)) continue;
-                deviceName = Convert.ToString(row.Cells[0].Value);
-                deviceType = Convert.ToString(row.Cells[1].Value);
-                command = Convert.ToString(row.Cells[2].Value);
-                argument = Convert.ToString(row.Cells[3].Value);
-                key = Convert.ToString(row.Cells[4].Value);
-                key2 = Convert.ToString(row.Cells[5].Value);
-                key3 = Convert.ToString(row.Cells[6].Value);
-
-                if (deviceName == null || deviceType == null) continue;
-                creator.Add(new(deviceName, deviceType, command, argument, key, key2, key3));
-
-                if (deviceType == "COMANDO" && command != null && argument != null)
-                    devices.Add(new CommandDevice(deviceName, (byte)row.Index, new ProcessStartInfo(command, argument)));
-
-                else if (deviceType == "TECLA" && key != null)
-                    devices.Add(new KeyDevice(deviceName, (byte)row.Index, DeviceCreator.GetEnumValue <VirtualKeyCode>(key),
-                                    DeviceCreator.GetEnumValue<VirtualKeyCode>(key2), DeviceCreator.GetEnumValue<VirtualKeyCode>(key3)));
-
-                else if (deviceType == "VOLUME" && key != null)
-                    devices.Add(new VolumeDevice(deviceName, (byte)row.Index));
-            }
-
-            var json_serializado = JsonConvert.SerializeObject(creator);
-            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + @"\comandos.json", json_serializado);
-        }
-        */
-        private void bt_salvar_Click(object sender, EventArgs e)
-            => SalvarComandos();
+        private void Bt_salvar_Click(object sender, EventArgs e) => SalvarComandos();
         
         public void SalvarComandos()
         {
@@ -261,17 +216,17 @@ namespace FauxmoCS
             MessageBox.Show("Salvo com sucesso!", "Sucesso!");
         }
         
-        private void bt_descartar_Click(object sender, EventArgs e)
+        private void Bt_descartar_Click(object sender, EventArgs e)
         {
             dgv_devices.Rows.Clear();
             CarregarComandos();
         }
-        private void dgv_devices_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        private void Dgv_devices_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             if (e.ColumnIndex == 4) e.Cancel = true;
         }
 
-        private void bt_iniciar_Click(object sender, EventArgs e)
+        private void Bt_iniciar_Click(object sender, EventArgs e)
         {
             if (!TcpRunning)
             {
@@ -291,7 +246,7 @@ namespace FauxmoCS
             }
         }
 
-        private void bt_pareamento_Click(object sender, EventArgs e)
+        private void Bt_pareamento_Click(object sender, EventArgs e)
         {
             if (!UdpRunning)
             {
@@ -310,7 +265,6 @@ namespace FauxmoCS
         private void Bt_abrirLogs_Click(object sender, EventArgs e)
             => Process.Start("explorer.exe", AppDomain.CurrentDomain.BaseDirectory + "Logs");
         
-
         private void button1_Click(object sender, EventArgs e)
         {
             About about = new ();
@@ -319,15 +273,11 @@ namespace FauxmoCS
 
         private static string GetLocalIp()
         {
-            //string localIP;
             using Socket socket = new(AddressFamily.InterNetwork, SocketType.Dgram, 0);
             socket.Connect("8.8.8.8", 65530);
             if (socket.LocalEndPoint is IPEndPoint endPoint) return endPoint.Address.ToString();
 
             else throw new Exception("Falha ao obter endereço de IP local");
-
-            //return localIP;
         }
-        
     }
 }

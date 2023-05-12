@@ -6,13 +6,13 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>AlexaCS.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\AlexaCS.ico</ApplicationIcon>
     <Platforms>AnyCPU;x86</Platforms>
     <Title>AlexaCS</Title>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="AlexaCS.ico" />
+    <Content Include="Resources\AlexaCS.ico" />
   </ItemGroup>
 
   <ItemGroup>

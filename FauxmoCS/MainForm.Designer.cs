@@ -65,7 +65,7 @@
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "FauxmoC#";
             this.notifyIcon.Visible = true;
-            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseDoubleClick);
             // 
             // contextMenuStrip
             // 
@@ -80,14 +80,14 @@
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
             this.abrirToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.abrirToolStripMenuItem.Text = "Abrir";
-            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
+            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.AbrirToolStripMenuItem_Click);
             // 
             // fecharToolStripMenuItem
             // 
             this.fecharToolStripMenuItem.Name = "fecharToolStripMenuItem";
             this.fecharToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.fecharToolStripMenuItem.Text = "Fechar";
-            this.fecharToolStripMenuItem.Click += new System.EventHandler(this.fecharToolStripMenuItem_Click);
+            this.fecharToolStripMenuItem.Click += new System.EventHandler(this.FecharToolStripMenuItem_Click);
             // 
             // cbox_IniciarComWindows
             // 
@@ -100,7 +100,7 @@
             this.cbox_IniciarComWindows.TabIndex = 1;
             this.cbox_IniciarComWindows.Text = "Iniciar com o Windows";
             this.cbox_IniciarComWindows.UseVisualStyleBackColor = true;
-            this.cbox_IniciarComWindows.CheckedChanged += new System.EventHandler(this.cb_iniciarComWindows_CheckedChanged);
+            this.cbox_IniciarComWindows.CheckedChanged += new System.EventHandler(this.Bb_iniciarComWindows_CheckedChanged);
             // 
             // dgv_devices
             // 
@@ -126,7 +126,7 @@
             this.dgv_devices.RowTemplate.Height = 25;
             this.dgv_devices.Size = new System.Drawing.Size(709, 166);
             this.dgv_devices.TabIndex = 2;
-            this.dgv_devices.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgv_devices_DataError);
+            this.dgv_devices.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.Dgv_devices_DataError);
             // 
             // NOME
             // 
@@ -186,7 +186,7 @@
             this.bt_salvar.TabIndex = 3;
             this.bt_salvar.Text = "Salvar";
             this.bt_salvar.UseVisualStyleBackColor = true;
-            this.bt_salvar.Click += new System.EventHandler(this.bt_salvar_Click);
+            this.bt_salvar.Click += new System.EventHandler(this.Bt_salvar_Click);
             // 
             // bt_descartar
             // 
@@ -199,7 +199,7 @@
             this.bt_descartar.TabIndex = 4;
             this.bt_descartar.Text = "Descartar";
             this.bt_descartar.UseVisualStyleBackColor = true;
-            this.bt_descartar.Click += new System.EventHandler(this.bt_descartar_Click);
+            this.bt_descartar.Click += new System.EventHandler(this.Bt_descartar_Click);
             // 
             // cbox_IniciarMinimizado
             // 
@@ -212,7 +212,7 @@
             this.cbox_IniciarMinimizado.TabIndex = 5;
             this.cbox_IniciarMinimizado.Text = "Iniciar Minimizado";
             this.cbox_IniciarMinimizado.UseVisualStyleBackColor = true;
-            this.cbox_IniciarMinimizado.CheckedChanged += new System.EventHandler(this.cbox_iniciarMinimizado_CheckedChanged);
+            this.cbox_IniciarMinimizado.CheckedChanged += new System.EventHandler(this.Cbox_iniciarMinimizado_CheckedChanged);
             // 
             // cbox_saveLogs
             // 
@@ -225,7 +225,7 @@
             this.cbox_saveLogs.TabIndex = 8;
             this.cbox_saveLogs.Text = "Gravar Logs";
             this.cbox_saveLogs.UseVisualStyleBackColor = true;
-            this.cbox_saveLogs.CheckedChanged += new System.EventHandler(this.cbox_saveLogs_CheckedChanged);
+            this.cbox_saveLogs.CheckedChanged += new System.EventHandler(this.Cbox_saveLogs_CheckedChanged);
             // 
             // bt_iniciar
             // 
@@ -239,7 +239,7 @@
             this.bt_iniciar.TabIndex = 11;
             this.bt_iniciar.Text = "Iniciar";
             this.bt_iniciar.UseVisualStyleBackColor = true;
-            this.bt_iniciar.Click += new System.EventHandler(this.bt_iniciar_Click);
+            this.bt_iniciar.Click += new System.EventHandler(this.Bt_iniciar_Click);
             // 
             // bt_pareamento
             // 
@@ -251,7 +251,7 @@
             this.bt_pareamento.TabIndex = 12;
             this.bt_pareamento.Text = "Pareamento";
             this.bt_pareamento.UseVisualStyleBackColor = true;
-            this.bt_pareamento.Click += new System.EventHandler(this.bt_pareamento_Click);
+            this.bt_pareamento.Click += new System.EventHandler(this.Bt_pareamento_Click);
             // 
             // lbl_tcpState
             // 
