@@ -124,19 +124,16 @@ namespace FauxmoCS
 
         private void Bb_iniciarComWindows_CheckedChanged(object sender, EventArgs e)
         {
-            RegistryKey? Reg;
+            RegistryKey? Reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            
             Properties.Settings.Default.cbAutoStart = cbox_IniciarComWindows.Checked;
             Properties.Settings.Default.Save();
+            
             if (cbox_IniciarComWindows.Checked)
-            {
-                Reg = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
-                Reg?.SetValue("IrReceiver", Application.ExecutablePath.ToString());
-            }
+                Reg?.SetValue(Application.ProductName, Application.ExecutablePath.ToString());
             else
-            {
-                Reg = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
-                Reg?.DeleteValue("IrReceiver");
-            }
+                Reg?.DeleteValue(Application.ProductName);
+            
         }
 
         private void Cbox_iniciarMinimizado_CheckedChanged(object sender, EventArgs e)
