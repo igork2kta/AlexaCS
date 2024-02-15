@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace FauxmoCS
+namespace AlexaCS
 {
     public static class VolumeControl
     {

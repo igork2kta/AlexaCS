@@ -1,5 +1,4 @@
-using FauxmoCS.Devices;
-using Microsoft.Win32;
+using AlexaCS.Devices;
 using Newtonsoft.Json;
 using System.Data;
 using System.Diagnostics;
@@ -7,7 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using WindowsInput.Native;
 
-namespace FauxmoCS
+namespace AlexaCS
 {
     public partial class MainForm : Form
     {

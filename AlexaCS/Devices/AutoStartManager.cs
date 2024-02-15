@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
 
-namespace FauxmoCS.Devices
+namespace AlexaCS.Devices
 {
     public static class AutoStartManager
     {

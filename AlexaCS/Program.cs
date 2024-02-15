@@ -1,4 +1,4 @@
-namespace FauxmoCS
+namespace AlexaCS
 {
     internal static class Program
     {

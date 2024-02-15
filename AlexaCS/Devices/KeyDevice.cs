@@ -1,27 +1,44 @@
-﻿using System.Diagnostics;
+﻿using WindowsInput;
+using WindowsInput.Native;
 
-namespace FauxmoCS
+namespace AlexaCS
 {
-    public sealed class CommandDevice : Device
+    public sealed class KeyDevice : Device
     {
-        readonly ProcessStartInfo command;
+        readonly VirtualKeyCode key;
+        readonly VirtualKeyCode key2;
+        readonly VirtualKeyCode key3;
         private bool state;
-
+        readonly InputSimulator keyboard = new();
+        
         public override bool State
         {
             get => state;
             set { state = value; ExecuteState(); }
         }
 
-        public CommandDevice(string deviceName, byte deviceNumber, ProcessStartInfo command):
+        public KeyDevice(string deviceName, byte deviceNumber, VirtualKeyCode key, VirtualKeyCode key2, VirtualKeyCode key3) :
             base(deviceName, deviceNumber)
         {
-            this.command = command;
+            this.key = key;
+            this.key2 = key2;
+            this.key3 = key3;
         }
 
         public void ExecuteState()
         {
-            Process.Start(command);
+            keyboard.Keyboard.KeyDown(key);
+            //if (key2 != null) 
+                keyboard?.Keyboard.KeyDown(key2);
+            //if (key3 != null) 
+                keyboard?.Keyboard.KeyDown(key3);
+
+            //if (key3 != null) 
+                keyboard?.Keyboard.KeyUp(key3);
+            //if (key2 != null)
+                keyboard?.Keyboard.KeyUp(key2);
+            keyboard?.Keyboard.KeyUp(key);
+            
         }
 
         public override string GetDeviceJson()
@@ -31,7 +48,7 @@ namespace FauxmoCS
 
         public override string GetLight()
         {
-            return GetResponseHeader("{\r\n\"1\": {\r\n\"type\": \"Extended color light\",\r\n\"name\": \"" + this.deviceName + "\",\r\n\"uniqueid\": \"" + this.uniqueId + "\"\r\n}\r\n}","application/json");
+            return GetResponseHeader("{\r\n\"1\": {\r\n\"type\": \"Extended color light\",\r\n\"name\": \"" + this.deviceName + "\",\r\n\"uniqueid\": \"" + this.uniqueId + "\"\r\n}\r\n}", "application/json");
         }
 
         public override string GetState()
@@ -39,5 +56,7 @@ namespace FauxmoCS
             return GetResponseHeader("[{\"success\":{\"/lights/" + this.deviceNumber + "/state/on\":" + this.State.ToString().ToLower() + "}}]", "application/json");
 
         }
+
+
     }
 }

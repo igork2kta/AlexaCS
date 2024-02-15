@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 using System.Text;
 
-namespace FauxmoCS
+namespace AlexaCS
 {
     public sealed class UDPListener
     {

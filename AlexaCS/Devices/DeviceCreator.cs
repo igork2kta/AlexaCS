@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WindowsInput.Native;
 
-namespace FauxmoCS
+namespace AlexaCS
 {
     public sealed class DeviceCreator
     {

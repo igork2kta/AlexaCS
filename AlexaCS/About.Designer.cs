@@ -1,4 +1,4 @@
-﻿namespace FauxmoCS
+﻿namespace AlexaCS
 {
     partial class About
     {

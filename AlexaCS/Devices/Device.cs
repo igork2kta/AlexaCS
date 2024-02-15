@@ -1,7 +1,7 @@
 ﻿using System.Net.NetworkInformation;
 using System.Text;
 
-namespace FauxmoCS
+namespace AlexaCS
 {
     public abstract class Device
     {

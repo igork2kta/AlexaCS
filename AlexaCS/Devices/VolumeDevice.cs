@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FauxmoCS
+namespace AlexaCS
 {
     public sealed class VolumeDevice : Device
     {
