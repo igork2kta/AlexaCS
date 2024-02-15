@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FauxmoCS.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="cbAutoStart" Type="System.Boolean" Scope="User">
+    <Setting Name="AutoStart" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="cbStartMinimized" Type="System.Boolean" Scope="User">

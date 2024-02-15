@@ -13,7 +13,7 @@ namespace FauxmoCS
 
         public static void Gravar(string texto, string strNomeArquivo = "")
         {
-            if (Properties.Settings.Default.cbAutoStart)
+            if (Properties.Settings.Default.AutoStart)
                 TaskGravar(texto, strNomeArquivo);
 
                 //Task.Run(() =>TaskGravar(texto, strNomeArquivo));

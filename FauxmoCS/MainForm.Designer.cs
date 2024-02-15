@@ -28,306 +28,295 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fecharToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cbox_IniciarComWindows = new System.Windows.Forms.CheckBox();
-            this.dgv_devices = new System.Windows.Forms.DataGridView();
-            this.NOME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TIPO = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.COMANDO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ARGUMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TECLA = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.TECLA2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.TECLA3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.bt_salvar = new System.Windows.Forms.Button();
-            this.bt_descartar = new System.Windows.Forms.Button();
-            this.cbox_IniciarMinimizado = new System.Windows.Forms.CheckBox();
-            this.cbox_saveLogs = new System.Windows.Forms.CheckBox();
-            this.bt_iniciar = new System.Windows.Forms.Button();
-            this.bt_pareamento = new System.Windows.Forms.Button();
-            this.lbl_tcpState = new System.Windows.Forms.Label();
-            this.lbl_udpState = new System.Windows.Forms.Label();
-            this.bt_abrirLogs = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.contextMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_devices)).BeginInit();
-            this.SuspendLayout();
+            notifyIcon = new NotifyIcon(components);
+            contextMenuStrip = new ContextMenuStrip(components);
+            abrirToolStripMenuItem = new ToolStripMenuItem();
+            fecharToolStripMenuItem = new ToolStripMenuItem();
+            cbox_IniciarComWindows = new CheckBox();
+            dgv_devices = new DataGridView();
+            NOME = new DataGridViewTextBoxColumn();
+            TIPO = new DataGridViewComboBoxColumn();
+            COMANDO = new DataGridViewTextBoxColumn();
+            ARGUMENTO = new DataGridViewTextBoxColumn();
+            TECLA = new DataGridViewComboBoxColumn();
+            TECLA2 = new DataGridViewComboBoxColumn();
+            TECLA3 = new DataGridViewComboBoxColumn();
+            bt_salvar = new Button();
+            bt_descartar = new Button();
+            cbox_IniciarMinimizado = new CheckBox();
+            cbox_saveLogs = new CheckBox();
+            bt_iniciar = new Button();
+            bt_pareamento = new Button();
+            lbl_tcpState = new Label();
+            lbl_udpState = new Label();
+            bt_abrirLogs = new Button();
+            button1 = new Button();
+            contextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgv_devices).BeginInit();
+            SuspendLayout();
             // 
             // notifyIcon
             // 
-            this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.notifyIcon.BalloonTipText = "FauxmoC# está rodando!";
-            this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
-            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "FauxmoC#";
-            this.notifyIcon.Visible = true;
-            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseDoubleClick);
+            notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+            notifyIcon.BalloonTipText = "FauxmoC# está rodando!";
+            notifyIcon.ContextMenuStrip = contextMenuStrip;
+            notifyIcon.Icon = (Icon)resources.GetObject("notifyIcon.Icon");
+            notifyIcon.Text = "FauxmoC#";
+            notifyIcon.Visible = true;
+            notifyIcon.MouseDoubleClick += NotifyIcon_MouseDoubleClick;
             // 
             // contextMenuStrip
             // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.abrirToolStripMenuItem,
-            this.fecharToolStripMenuItem});
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(110, 48);
+            contextMenuStrip.Items.AddRange(new ToolStripItem[] { abrirToolStripMenuItem, fecharToolStripMenuItem });
+            contextMenuStrip.Name = "contextMenuStrip";
+            contextMenuStrip.Size = new Size(110, 48);
             // 
             // abrirToolStripMenuItem
             // 
-            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.abrirToolStripMenuItem.Text = "Abrir";
-            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.AbrirToolStripMenuItem_Click);
+            abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
+            abrirToolStripMenuItem.Size = new Size(109, 22);
+            abrirToolStripMenuItem.Text = "Abrir";
+            abrirToolStripMenuItem.Click += AbrirToolStripMenuItem_Click;
             // 
             // fecharToolStripMenuItem
             // 
-            this.fecharToolStripMenuItem.Name = "fecharToolStripMenuItem";
-            this.fecharToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.fecharToolStripMenuItem.Text = "Fechar";
-            this.fecharToolStripMenuItem.Click += new System.EventHandler(this.FecharToolStripMenuItem_Click);
+            fecharToolStripMenuItem.Name = "fecharToolStripMenuItem";
+            fecharToolStripMenuItem.Size = new Size(109, 22);
+            fecharToolStripMenuItem.Text = "Fechar";
+            fecharToolStripMenuItem.Click += FecharToolStripMenuItem_Click;
             // 
             // cbox_IniciarComWindows
             // 
-            this.cbox_IniciarComWindows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cbox_IniciarComWindows.AutoSize = true;
-            this.cbox_IniciarComWindows.ForeColor = System.Drawing.Color.White;
-            this.cbox_IniciarComWindows.Location = new System.Drawing.Point(12, 234);
-            this.cbox_IniciarComWindows.Name = "cbox_IniciarComWindows";
-            this.cbox_IniciarComWindows.Size = new System.Drawing.Size(147, 19);
-            this.cbox_IniciarComWindows.TabIndex = 1;
-            this.cbox_IniciarComWindows.Text = "Iniciar com o Windows";
-            this.cbox_IniciarComWindows.UseVisualStyleBackColor = true;
-            this.cbox_IniciarComWindows.CheckedChanged += new System.EventHandler(this.Bb_iniciarComWindows_CheckedChanged);
+            cbox_IniciarComWindows.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            cbox_IniciarComWindows.AutoSize = true;
+            cbox_IniciarComWindows.ForeColor = Color.White;
+            cbox_IniciarComWindows.Location = new Point(12, 234);
+            cbox_IniciarComWindows.Name = "cbox_IniciarComWindows";
+            cbox_IniciarComWindows.Size = new Size(147, 19);
+            cbox_IniciarComWindows.TabIndex = 1;
+            cbox_IniciarComWindows.Text = "Iniciar com o Windows";
+            cbox_IniciarComWindows.UseVisualStyleBackColor = true;
+            cbox_IniciarComWindows.CheckedChanged += Bb_iniciarComWindows_CheckedChanged;
             // 
             // dgv_devices
             // 
-            this.dgv_devices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv_devices.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_devices.BackgroundColor = System.Drawing.SystemColors.MenuHighlight;
-            this.dgv_devices.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgv_devices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_devices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.NOME,
-            this.TIPO,
-            this.COMANDO,
-            this.ARGUMENTO,
-            this.TECLA,
-            this.TECLA2,
-            this.TECLA3});
-            this.dgv_devices.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgv_devices.Location = new System.Drawing.Point(12, 12);
-            this.dgv_devices.Name = "dgv_devices";
-            this.dgv_devices.RowHeadersWidth = 20;
-            this.dgv_devices.RowTemplate.Height = 25;
-            this.dgv_devices.Size = new System.Drawing.Size(709, 166);
-            this.dgv_devices.TabIndex = 2;
-            this.dgv_devices.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.Dgv_devices_DataError);
+            dgv_devices.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgv_devices.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv_devices.BackgroundColor = SystemColors.MenuHighlight;
+            dgv_devices.BorderStyle = BorderStyle.None;
+            dgv_devices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_devices.Columns.AddRange(new DataGridViewColumn[] { NOME, TIPO, COMANDO, ARGUMENTO, TECLA, TECLA2, TECLA3 });
+            dgv_devices.GridColor = SystemColors.ActiveBorder;
+            dgv_devices.Location = new Point(12, 12);
+            dgv_devices.Name = "dgv_devices";
+            dgv_devices.RowHeadersWidth = 20;
+            dgv_devices.RowTemplate.Height = 25;
+            dgv_devices.Size = new Size(709, 166);
+            dgv_devices.TabIndex = 2;
+            dgv_devices.DataError += Dgv_devices_DataError;
             // 
             // NOME
             // 
-            this.NOME.HeaderText = "NOME";
-            this.NOME.Name = "NOME";
+            NOME.HeaderText = "NOME";
+            NOME.Name = "NOME";
             // 
             // TIPO
             // 
-            this.TIPO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.TIPO.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.TIPO.HeaderText = "TIPO";
-            this.TIPO.Name = "TIPO";
-            this.TIPO.Width = 39;
+            TIPO.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            TIPO.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
+            TIPO.HeaderText = "TIPO";
+            TIPO.Name = "TIPO";
+            TIPO.Width = 39;
             // 
             // COMANDO
             // 
-            this.COMANDO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.COMANDO.HeaderText = "COMANDO";
-            this.COMANDO.Name = "COMANDO";
-            this.COMANDO.Width = 94;
+            COMANDO.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            COMANDO.HeaderText = "COMANDO";
+            COMANDO.Name = "COMANDO";
+            COMANDO.Width = 94;
             // 
             // ARGUMENTO
             // 
-            this.ARGUMENTO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.ARGUMENTO.HeaderText = "ARGUMENTO";
-            this.ARGUMENTO.Name = "ARGUMENTO";
-            this.ARGUMENTO.Width = 103;
+            ARGUMENTO.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            ARGUMENTO.HeaderText = "ARGUMENTO";
+            ARGUMENTO.Name = "ARGUMENTO";
+            ARGUMENTO.Width = 103;
             // 
             // TECLA
             // 
-            this.TECLA.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.TECLA.HeaderText = "TECLA";
-            this.TECLA.Name = "TECLA";
+            TECLA.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
+            TECLA.HeaderText = "TECLA";
+            TECLA.Name = "TECLA";
             // 
             // TECLA2
             // 
-            this.TECLA2.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.TECLA2.HeaderText = "TECLA2";
-            this.TECLA2.Name = "TECLA2";
-            this.TECLA2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.TECLA2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            TECLA2.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
+            TECLA2.HeaderText = "TECLA2";
+            TECLA2.Name = "TECLA2";
+            TECLA2.Resizable = DataGridViewTriState.True;
+            TECLA2.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
             // TECLA3
             // 
-            this.TECLA3.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.TECLA3.HeaderText = "TECLA3";
-            this.TECLA3.Name = "TECLA3";
-            this.TECLA3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.TECLA3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            TECLA3.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
+            TECLA3.HeaderText = "TECLA3";
+            TECLA3.Name = "TECLA3";
+            TECLA3.Resizable = DataGridViewTriState.True;
+            TECLA3.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
             // bt_salvar
             // 
-            this.bt_salvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_salvar.Location = new System.Drawing.Point(646, 184);
-            this.bt_salvar.Name = "bt_salvar";
-            this.bt_salvar.Size = new System.Drawing.Size(75, 23);
-            this.bt_salvar.TabIndex = 3;
-            this.bt_salvar.Text = "Salvar";
-            this.bt_salvar.UseVisualStyleBackColor = true;
-            this.bt_salvar.Click += new System.EventHandler(this.Bt_salvar_Click);
+            bt_salvar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            bt_salvar.Location = new Point(646, 184);
+            bt_salvar.Name = "bt_salvar";
+            bt_salvar.Size = new Size(75, 23);
+            bt_salvar.TabIndex = 3;
+            bt_salvar.Text = "Salvar";
+            bt_salvar.UseVisualStyleBackColor = true;
+            bt_salvar.Click += Bt_salvar_Click;
             // 
             // bt_descartar
             // 
-            this.bt_descartar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_descartar.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.bt_descartar.ForeColor = System.Drawing.Color.Black;
-            this.bt_descartar.Location = new System.Drawing.Point(565, 184);
-            this.bt_descartar.Name = "bt_descartar";
-            this.bt_descartar.Size = new System.Drawing.Size(75, 23);
-            this.bt_descartar.TabIndex = 4;
-            this.bt_descartar.Text = "Descartar";
-            this.bt_descartar.UseVisualStyleBackColor = true;
-            this.bt_descartar.Click += new System.EventHandler(this.Bt_descartar_Click);
+            bt_descartar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            bt_descartar.BackColor = SystemColors.ControlLight;
+            bt_descartar.ForeColor = Color.Black;
+            bt_descartar.Location = new Point(565, 184);
+            bt_descartar.Name = "bt_descartar";
+            bt_descartar.Size = new Size(75, 23);
+            bt_descartar.TabIndex = 4;
+            bt_descartar.Text = "Descartar";
+            bt_descartar.UseVisualStyleBackColor = true;
+            bt_descartar.Click += Bt_descartar_Click;
             // 
             // cbox_IniciarMinimizado
             // 
-            this.cbox_IniciarMinimizado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cbox_IniciarMinimizado.AutoSize = true;
-            this.cbox_IniciarMinimizado.ForeColor = System.Drawing.Color.White;
-            this.cbox_IniciarMinimizado.Location = new System.Drawing.Point(12, 209);
-            this.cbox_IniciarMinimizado.Name = "cbox_IniciarMinimizado";
-            this.cbox_IniciarMinimizado.Size = new System.Drawing.Size(124, 19);
-            this.cbox_IniciarMinimizado.TabIndex = 5;
-            this.cbox_IniciarMinimizado.Text = "Iniciar Minimizado";
-            this.cbox_IniciarMinimizado.UseVisualStyleBackColor = true;
-            this.cbox_IniciarMinimizado.CheckedChanged += new System.EventHandler(this.Cbox_iniciarMinimizado_CheckedChanged);
+            cbox_IniciarMinimizado.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            cbox_IniciarMinimizado.AutoSize = true;
+            cbox_IniciarMinimizado.ForeColor = Color.White;
+            cbox_IniciarMinimizado.Location = new Point(12, 209);
+            cbox_IniciarMinimizado.Name = "cbox_IniciarMinimizado";
+            cbox_IniciarMinimizado.Size = new Size(124, 19);
+            cbox_IniciarMinimizado.TabIndex = 5;
+            cbox_IniciarMinimizado.Text = "Iniciar Minimizado";
+            cbox_IniciarMinimizado.UseVisualStyleBackColor = true;
+            cbox_IniciarMinimizado.CheckedChanged += Cbox_iniciarMinimizado_CheckedChanged;
             // 
             // cbox_saveLogs
             // 
-            this.cbox_saveLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cbox_saveLogs.AutoSize = true;
-            this.cbox_saveLogs.ForeColor = System.Drawing.Color.White;
-            this.cbox_saveLogs.Location = new System.Drawing.Point(12, 184);
-            this.cbox_saveLogs.Name = "cbox_saveLogs";
-            this.cbox_saveLogs.Size = new System.Drawing.Size(88, 19);
-            this.cbox_saveLogs.TabIndex = 8;
-            this.cbox_saveLogs.Text = "Gravar Logs";
-            this.cbox_saveLogs.UseVisualStyleBackColor = true;
-            this.cbox_saveLogs.CheckedChanged += new System.EventHandler(this.Cbox_saveLogs_CheckedChanged);
+            cbox_saveLogs.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            cbox_saveLogs.AutoSize = true;
+            cbox_saveLogs.ForeColor = Color.White;
+            cbox_saveLogs.Location = new Point(12, 184);
+            cbox_saveLogs.Name = "cbox_saveLogs";
+            cbox_saveLogs.Size = new Size(88, 19);
+            cbox_saveLogs.TabIndex = 8;
+            cbox_saveLogs.Text = "Gravar Logs";
+            cbox_saveLogs.UseVisualStyleBackColor = true;
+            cbox_saveLogs.CheckedChanged += Cbox_saveLogs_CheckedChanged;
             // 
             // bt_iniciar
             // 
-            this.bt_iniciar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_iniciar.BackColor = System.Drawing.Color.Red;
-            this.bt_iniciar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bt_iniciar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bt_iniciar.Location = new System.Drawing.Point(467, 184);
-            this.bt_iniciar.Name = "bt_iniciar";
-            this.bt_iniciar.Size = new System.Drawing.Size(79, 23);
-            this.bt_iniciar.TabIndex = 11;
-            this.bt_iniciar.Text = "Iniciar";
-            this.bt_iniciar.UseVisualStyleBackColor = true;
-            this.bt_iniciar.Click += new System.EventHandler(this.Bt_iniciar_Click);
+            bt_iniciar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            bt_iniciar.BackColor = Color.Red;
+            bt_iniciar.FlatStyle = FlatStyle.Popup;
+            bt_iniciar.ForeColor = SystemColors.ControlText;
+            bt_iniciar.Location = new Point(467, 184);
+            bt_iniciar.Name = "bt_iniciar";
+            bt_iniciar.Size = new Size(79, 23);
+            bt_iniciar.TabIndex = 11;
+            bt_iniciar.Text = "Iniciar";
+            bt_iniciar.UseVisualStyleBackColor = true;
+            bt_iniciar.Click += Bt_iniciar_Click;
             // 
             // bt_pareamento
             // 
-            this.bt_pareamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_pareamento.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bt_pareamento.Location = new System.Drawing.Point(381, 184);
-            this.bt_pareamento.Name = "bt_pareamento";
-            this.bt_pareamento.Size = new System.Drawing.Size(79, 23);
-            this.bt_pareamento.TabIndex = 12;
-            this.bt_pareamento.Text = "Pareamento";
-            this.bt_pareamento.UseVisualStyleBackColor = true;
-            this.bt_pareamento.Click += new System.EventHandler(this.Bt_pareamento_Click);
+            bt_pareamento.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            bt_pareamento.FlatStyle = FlatStyle.Popup;
+            bt_pareamento.Location = new Point(381, 184);
+            bt_pareamento.Name = "bt_pareamento";
+            bt_pareamento.Size = new Size(79, 23);
+            bt_pareamento.TabIndex = 12;
+            bt_pareamento.Text = "Pareamento";
+            bt_pareamento.UseVisualStyleBackColor = true;
+            bt_pareamento.Click += Bt_pareamento_Click;
             // 
             // lbl_tcpState
             // 
-            this.lbl_tcpState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbl_tcpState.Location = new System.Drawing.Point(523, 238);
-            this.lbl_tcpState.Name = "lbl_tcpState";
-            this.lbl_tcpState.Size = new System.Drawing.Size(198, 15);
-            this.lbl_tcpState.TabIndex = 13;
-            this.lbl_tcpState.Text = "lbl_tcpState";
-            this.lbl_tcpState.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lbl_tcpState.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lbl_tcpState.Location = new Point(523, 238);
+            lbl_tcpState.Name = "lbl_tcpState";
+            lbl_tcpState.Size = new Size(198, 15);
+            lbl_tcpState.TabIndex = 13;
+            lbl_tcpState.Text = "lbl_tcpState";
+            lbl_tcpState.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lbl_udpState
             // 
-            this.lbl_udpState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbl_udpState.ForeColor = System.Drawing.Color.Lime;
-            this.lbl_udpState.Location = new System.Drawing.Point(479, 254);
-            this.lbl_udpState.Name = "lbl_udpState";
-            this.lbl_udpState.Size = new System.Drawing.Size(242, 15);
-            this.lbl_udpState.TabIndex = 14;
-            this.lbl_udpState.Text = "lbl_udpState";
-            this.lbl_udpState.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lbl_udpState.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lbl_udpState.ForeColor = Color.Lime;
+            lbl_udpState.Location = new Point(479, 254);
+            lbl_udpState.Name = "lbl_udpState";
+            lbl_udpState.Size = new Size(242, 15);
+            lbl_udpState.TabIndex = 14;
+            lbl_udpState.Text = "lbl_udpState";
+            lbl_udpState.TextAlign = ContentAlignment.MiddleRight;
             // 
             // bt_abrirLogs
             // 
-            this.bt_abrirLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.bt_abrirLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_abrirLogs.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.bt_abrirLogs.Image = global::FauxmoCS.Properties.Resources.Search;
-            this.bt_abrirLogs.Location = new System.Drawing.Point(101, 184);
-            this.bt_abrirLogs.Name = "bt_abrirLogs";
-            this.bt_abrirLogs.Size = new System.Drawing.Size(19, 19);
-            this.bt_abrirLogs.TabIndex = 15;
-            this.bt_abrirLogs.UseVisualStyleBackColor = true;
-            this.bt_abrirLogs.Click += new System.EventHandler(this.Bt_abrirLogs_Click);
+            bt_abrirLogs.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            bt_abrirLogs.FlatStyle = FlatStyle.Flat;
+            bt_abrirLogs.ForeColor = SystemColors.MenuHighlight;
+            bt_abrirLogs.Image = Properties.Resources.Search;
+            bt_abrirLogs.Location = new Point(101, 184);
+            bt_abrirLogs.Name = "bt_abrirLogs";
+            bt_abrirLogs.Size = new Size(19, 19);
+            bt_abrirLogs.TabIndex = 15;
+            bt_abrirLogs.UseVisualStyleBackColor = true;
+            bt_abrirLogs.Click += Bt_abrirLogs_Click;
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(3, 255);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(18, 19);
-            this.button1.TabIndex = 16;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = SystemColors.MenuHighlight;
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.Location = new Point(3, 255);
+            button1.Name = "button1";
+            button1.Size = new Size(18, 19);
+            button1.TabIndex = 16;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.ClientSize = new System.Drawing.Size(733, 276);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.bt_abrirLogs);
-            this.Controls.Add(this.lbl_udpState);
-            this.Controls.Add(this.lbl_tcpState);
-            this.Controls.Add(this.bt_pareamento);
-            this.Controls.Add(this.bt_iniciar);
-            this.Controls.Add(this.cbox_saveLogs);
-            this.Controls.Add(this.cbox_IniciarMinimizado);
-            this.Controls.Add(this.bt_descartar);
-            this.Controls.Add(this.bt_salvar);
-            this.Controls.Add(this.dgv_devices);
-            this.Controls.Add(this.cbox_IniciarComWindows);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "MainForm";
-            this.Text = "AlexaC#";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
-            this.contextMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_devices)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.MenuHighlight;
+            ClientSize = new Size(733, 276);
+            Controls.Add(button1);
+            Controls.Add(bt_abrirLogs);
+            Controls.Add(lbl_udpState);
+            Controls.Add(lbl_tcpState);
+            Controls.Add(bt_pareamento);
+            Controls.Add(bt_iniciar);
+            Controls.Add(cbox_saveLogs);
+            Controls.Add(cbox_IniciarMinimizado);
+            Controls.Add(bt_descartar);
+            Controls.Add(bt_salvar);
+            Controls.Add(dgv_devices);
+            Controls.Add(cbox_IniciarComWindows);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "MainForm";
+            Text = "AlexaC#";
+            FormClosed += MainForm_FormClosed;
+            Load += Form1_Load;
+            SizeChanged += MainForm_SizeChanged;
+            contextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgv_devices).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

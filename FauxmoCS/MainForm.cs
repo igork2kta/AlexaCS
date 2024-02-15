@@ -1,3 +1,4 @@
+using FauxmoCS.Devices;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using System.Data;
@@ -18,7 +19,8 @@ namespace FauxmoCS
         CancellationTokenSource tokenTcp = new();
         CancellationToken ctTcp;
         TCPListener? listener;
-        public bool TcpRunning { 
+        public bool TcpRunning
+        {
             get => tcpRunning;
             set
             {
@@ -41,7 +43,8 @@ namespace FauxmoCS
                 }
             }
         }
-        public bool UdpRunning { 
+        public bool UdpRunning
+        {
             get => udpRunning;
             set
             {
@@ -64,10 +67,12 @@ namespace FauxmoCS
         public MainForm()
         {
             InitializeComponent();
-            cbox_IniciarComWindows.Checked = Properties.Settings.Default.cbAutoStart;
-            cbox_saveLogs.Checked = Properties.Settings.Default.cbAutoStart;
+            cbox_IniciarComWindows.Checked = Properties.Settings.Default.AutoStart;
+            cbox_saveLogs.Checked = Properties.Settings.Default.cbSaveLogs;
             cbox_IniciarMinimizado.Checked = Properties.Settings.Default.cbStartMinimized;
         }
+
+        #region FormEvents
         private void Form1_Load(object sender, EventArgs e)
         {
             DataTable dt_tipo = new();
@@ -91,27 +96,12 @@ namespace FauxmoCS
                 Task.Run(() => listener.Run(ctTcp));
                 TcpRunning = true;
             }
-            else  
+            else
                 TcpRunning = false;
-                
+
             UdpRunning = false;
         }
 
-        private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Normal;
-            ShowInTaskbar = true;
-        }
-
-        private void FecharToolStripMenuItem_Click(object sender, EventArgs e) => Close();
-        
-        private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            WindowState = FormWindowState.Normal;
-            ShowInTaskbar = true;
-            //Mostra no gerenciador de tarefas novamente
-            FormBorderStyle = FormBorderStyle.Sizable;
-        }
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
             if (FormWindowState.Minimized == WindowState)
@@ -121,108 +111,42 @@ namespace FauxmoCS
                 FormBorderStyle = FormBorderStyle.FixedToolWindow;
             }
         }
-
-        private void Bb_iniciarComWindows_CheckedChanged(object sender, EventArgs e)
+        private void Dgv_devices_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
-            RegistryKey? Reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            
-            Properties.Settings.Default.cbAutoStart = cbox_IniciarComWindows.Checked;
-            Properties.Settings.Default.Save();
-            
-            if (cbox_IniciarComWindows.Checked)
-                Reg?.SetValue(Application.ProductName, Application.ExecutablePath.ToString());
-            else
-                Reg?.DeleteValue(Application.ProductName);
-            
+            if (e.ColumnIndex == 4) e.Cancel = true;
+        }
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Exit();
         }
 
-        private void Cbox_iniciarMinimizado_CheckedChanged(object sender, EventArgs e)
+        #endregion
+
+        #region TrayIcon
+        private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.cbStartMinimized = cbox_IniciarMinimizado.Checked;
-            Properties.Settings.Default.Save();
+            WindowState = FormWindowState.Normal;
+            ShowInTaskbar = true;
         }
 
-        private void Cbox_saveLogs_CheckedChanged(object sender, EventArgs e)
+        private void FecharToolStripMenuItem_Click(object sender, EventArgs e) => Exit();
+        
+        private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Properties.Settings.Default.cbAutoStart = cbox_saveLogs.Checked;
-            Properties.Settings.Default.Save();
+            WindowState = FormWindowState.Normal;
+            ShowInTaskbar = true;
+            //Mostra no gerenciador de tarefas novamente
+            FormBorderStyle = FormBorderStyle.Sizable;
         }
+        #endregion
 
-
-        public bool CarregarComandos()
-        {
-            List<DeviceCreator>? creator;
-
-            dgv_devices.Rows.Clear();
-            try
-            {
-                var json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\comandos.json");
-                creator = JsonConvert.DeserializeObject<List<DeviceCreator>>(json);
-            }
-            catch (FileNotFoundException)
-            { 
-                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + @"\comandos.json", "[]");
-                return false;
-            }
-               
-            if (creator == null || creator.Count <= 0) return false;
-
-            devices = DeviceCreator.CreateDeviceList(creator);
-
-            foreach(DeviceCreator device in creator)
-                dgv_devices.Rows.Add(device.nome, device.tipo, device.comando, device.argumento, device.tecla, device.tecla2, device.tecla3);
-
-            return true;
-        }
-
+        #region ApplicationOptions
         private void Bt_salvar_Click(object sender, EventArgs e) => SalvarComandos();
-        
-        public void SalvarComandos()
-        {
-            List<DeviceCreator> creator = new();
-
-            string? deviceName, deviceType, command, argument, key, key2, key3;
-
-            for (byte i = 0; i < dgv_devices.RowCount; i++)
-            {
-                if (dgv_devices.Rows[i].Index == (dgv_devices.Rows.Count - 1)) continue;
-                
-                deviceName = Convert.ToString(dgv_devices.Rows[i].Cells[0].Value);
-                deviceType = Convert.ToString(dgv_devices.Rows[i].Cells[1].Value);
-                command    = Convert.ToString(dgv_devices.Rows[i].Cells[2].Value);
-                argument   = Convert.ToString(dgv_devices.Rows[i].Cells[3].Value);
-                key        = Convert.ToString(dgv_devices.Rows[i].Cells[4].Value);
-                key2       = Convert.ToString(dgv_devices.Rows[i].Cells[5].Value);
-                key3       = Convert.ToString(dgv_devices.Rows[i].Cells[6].Value);
-
-                if (String.IsNullOrEmpty(deviceType))
-                {
-                    MessageBox.Show("O tipo de dispositivo precisa ser selecionado!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (deviceName == null || deviceType == null) continue;
-                creator.Add(new(deviceName, deviceType, command, argument, key, key2, key3));
-
-            }
-
-            var json_serializado = JsonConvert.SerializeObject(creator);
-            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + @"\comandos.json", json_serializado);
-            CarregarComandos();
-
-            MessageBox.Show("Salvo com sucesso!", "Sucesso!");
-        }
-        
         private void Bt_descartar_Click(object sender, EventArgs e)
         {
             dgv_devices.Rows.Clear();
             CarregarComandos();
         }
-        private void Dgv_devices_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            if (e.ColumnIndex == 4) e.Cancel = true;
-        }
-
         private void Bt_iniciar_Click(object sender, EventArgs e)
         {
             if (!TcpRunning)
@@ -242,7 +166,6 @@ namespace FauxmoCS
                 listener?.Stop();
             }
         }
-
         private void Bt_pareamento_Click(object sender, EventArgs e)
         {
             if (!UdpRunning)
@@ -261,11 +184,92 @@ namespace FauxmoCS
 
         private void Bt_abrirLogs_Click(object sender, EventArgs e)
             => Process.Start("explorer.exe", AppDomain.CurrentDomain.BaseDirectory + "Logs");
-        
+
+        private void Bb_iniciarComWindows_CheckedChanged(object sender, EventArgs e)
+        {
+            AutoStartManager.SetAutoStart(cbox_IniciarComWindows.Checked);
+        }
+
+        private void Cbox_iniciarMinimizado_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.cbStartMinimized = cbox_IniciarMinimizado.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void Cbox_saveLogs_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AutoStart = cbox_saveLogs.Checked;
+            Properties.Settings.Default.Save();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            About about = new ();
+            About about = new();
             about.ShowDialog();
+        }
+        #endregion
+
+        #region FormFunctions
+        public bool CarregarComandos()
+        {
+            List<DeviceCreator>? creator;
+
+            dgv_devices.Rows.Clear();
+            try
+            {
+                string json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\comandos.json");
+                creator = JsonConvert.DeserializeObject<List<DeviceCreator>>(json);
+            }
+            catch (FileNotFoundException)
+            {
+                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + @"\comandos.json", "[]");
+                return false;
+            }
+
+            if (creator == null || creator.Count <= 0) return false;
+
+            devices = DeviceCreator.CreateDeviceList(creator);
+
+            foreach (DeviceCreator device in creator)
+                dgv_devices.Rows.Add(device.nome, device.tipo, device.comando, device.argumento, device.tecla, device.tecla2, device.tecla3);
+
+            return true;
+        }
+
+        
+        public void SalvarComandos()
+        {
+            List<DeviceCreator> creator = new();
+
+            string? deviceName, deviceType, command, argument, key, key2, key3;
+
+            for (byte i = 0; i < dgv_devices.RowCount; i++)
+            {
+                if (dgv_devices.Rows[i].Index == (dgv_devices.Rows.Count - 1)) continue;
+
+                deviceName = Convert.ToString(dgv_devices.Rows[i].Cells[0].Value);
+                deviceType = Convert.ToString(dgv_devices.Rows[i].Cells[1].Value);
+                command =   Convert.ToString(dgv_devices.Rows[i].Cells[2].Value);
+                argument = Convert.ToString(dgv_devices.Rows[i].Cells[3].Value);
+                key = Convert.ToString(dgv_devices.Rows[i].Cells[4].Value);
+                key2 = Convert.ToString(dgv_devices.Rows[i].Cells[5].Value);
+                key3 = Convert.ToString(dgv_devices.Rows[i].Cells[6].Value);
+
+                if (String.IsNullOrEmpty(deviceType))
+                {
+                    MessageBox.Show("O tipo de dispositivo precisa ser selecionado!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (deviceName == null || deviceType == null) continue;
+                creator.Add(new(deviceName, deviceType, command, argument, key, key2, key3));
+
+            }
+
+            var json_serializado = JsonConvert.SerializeObject(creator);
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + @"\comandos.json", json_serializado);
+            CarregarComandos();
+
+            MessageBox.Show("Salvo com sucesso!", "Sucesso!");
         }
 
         private static string GetLocalIp()
@@ -276,5 +280,13 @@ namespace FauxmoCS
 
             else throw new Exception("Falha ao obter endereço de IP local");
         }
+
+        private void Exit()
+        {
+            tokenTcp.Cancel();
+            tokenUdp.Cancel();
+            Application.Exit();
+        }
+        #endregion
     }
 }
