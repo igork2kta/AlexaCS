@@ -197,7 +197,7 @@ namespace AlexaCS
 
         private void Cbox_saveLogs_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.AutoStart = cbox_saveLogs.Checked;
+            Properties.Settings.Default.cbSaveLogs = cbox_saveLogs.Checked;
             Properties.Settings.Default.Save();
         }
         private void button1_Click(object sender, EventArgs e)
