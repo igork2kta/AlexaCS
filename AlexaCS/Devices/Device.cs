@@ -7,20 +7,35 @@ namespace AlexaCS
     {
         public readonly string deviceName;
         public readonly string uniqueId;
+        public readonly string usuario;
         public byte deviceNumber;
         public virtual bool State { get; set; } 
         public virtual float Nivel { get; set; }
 
-        readonly public static byte[] deviceType =Encoding.UTF8.GetBytes(GetResponseHeader("[{\"success\":{\"username\": \"2WLEDHardQrI3WHYTHoMcXHgEspsM8ZZRpSKtBQr\"}}]", "application/json"));
+        public static byte[] deviceType;
+        //readonly public static byte[] deviceType =Encoding.UTF8.GetBytes(GetResponseHeader("[{\"success\":{\"username\": \"2WLEDHardQrI3WHYTHoMcXHgEspsM8ZZRpSKtBQr\"}}]", "application/json").Replace("2WLEDHardQrI3WHYTHoMcXHgEspsM8ZZRpSKtBQr", usuario));
 
         public Device(string deviceName, byte deviceNumber)
         {
             this.deviceName = deviceName;
             this.deviceNumber = deviceNumber;
             uniqueId = GerarUniqueId(deviceNumber);
+            usuario = GerarUsuario(deviceNumber);
+            deviceType = GerarDeviceType(usuario);
         }
 
-        private static string GerarUniqueId(int number)
+        private static string GerarUsuario(int deviceNumber)
+        {
+            return "2WLEDHardQrI3WHYTHoMcXHgEspsM8ZZRpSKtBQr" + deviceNumber;
+        }
+        private static byte[] GerarDeviceType(string usuario)
+        {
+            
+            return Encoding.UTF8.GetBytes( GetResponseHeader($"[{{\"success\":{{\"username\": \"{usuario}\"}}}}]", "application/json"));
+
+        }
+
+        private static string GerarUniqueId(int deviceNumber)
         {
             string? id =
             (
@@ -35,7 +50,7 @@ namespace AlexaCS
             for (int i = 2; i < id.Length; i += 3)
                 id = id.Insert(i, ":");
 
-            id += ":00:00-" + number.ToString("00");
+            id += ":00:00-" + deviceNumber.ToString("00");
             return id;
         }
         public static string GetResponseHeader(string response, string contentType)

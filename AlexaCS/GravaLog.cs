@@ -13,7 +13,7 @@ namespace AlexaCS
 
         public static void Gravar(string texto, string strNomeArquivo = "")
         {
-            if (Properties.Settings.Default.AutoStart)
+            if (Properties.Settings.Default.cbSaveLogs)
                 TaskGravar(texto, strNomeArquivo);
 
                 //Task.Run(() =>TaskGravar(texto, strNomeArquivo));

@@ -1,0 +1,5 @@
+Verificar firewall
+	Em rede publica a regra de firewall bloqueia
+
+Erro ao ligar pareamento
+	Torrent da conflito

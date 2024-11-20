@@ -1,9 +1,6 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Authentication;
 
 namespace AlexaCS
 {
