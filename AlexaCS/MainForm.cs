@@ -18,6 +18,7 @@ namespace AlexaCS
         CancellationTokenSource tokenTcp = new();
         CancellationToken ctTcp;
         TCPListener? listener;
+        TcpListenerHttps? listenerHttps;
         public bool TcpRunning
         {
             get => tcpRunning;
@@ -91,8 +92,10 @@ namespace AlexaCS
             {
                 ctTcp = tokenTcp.Token;
                 listener = new(ref devices, GetLocalIp());
+                listenerHttps = new TcpListenerHttps("c:\\cert\\hue.pfx", "senhaDoCert");
 
                 Task.Run(() => listener.Run(ctTcp));
+                Task.Run(() => listenerHttps.Start(ctTcp));
                 TcpRunning = true;
             }
             else
